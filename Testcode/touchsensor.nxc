@@ -1,0 +1,25 @@
+
+task main()
+{
+	SetSensorTouch(S1);
+	SetSensorTouch(S2);
+	while(true)
+	{
+		OnFwd(OUT_BC, 30);
+		if (SensorScaled(S1))
+		{
+			// Hit left: Back up, turn right, continue
+			OnRev(OUT_BC, 30);
+			Wait(500);
+			OnFwd(OUT_B, 30);
+			Wait(500);
+		}
+		else if (SensorScaled(S2))
+		{
+			OnRev(OUT_BC, 30);
+			Wait(500);
+			OnFwd(OUT_C, 30);
+			Wait(500);
+		}
+	}
+}

@@ -1,0 +1,10 @@
+task main()
+{
+	while(true)
+	{
+		RotateMotor(OUT_A, 30, 360);
+		Wait(500);
+		RotateMotor(OUT_B, 30, 360);
+		Wait(1500);
+	}
+}

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6E576D67-339D-46BA-8627-D63C1C417A3F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>legosimulator</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4290;4800;4996;4800</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <CustomBuildStep>
+      <Command>robocopy $(TargetDir)ressources $(SolutionDir)\..\Graphics *.mtl
+robocopy $(TargetDir)ressources $(SolutionDir)\..\Graphics *.obj
+robocopy $(TargetDir)ressources $(SolutionDir)\..\Graphics *.tga
+robocopy $(TargetDir)ressources $(SolutionDir)\..\Sounds *.wav
+robocopy $(TargetDir) $(SolutionDir)\..\WindowsDLLs *.dll</Command>
+      <Inputs>$(SolutionDir)\..\Graphics *.mtl;$(SolutionDir)\..\Graphics *.obj;$(SolutionDir)\..\Graphics *.tga;$(SolutionDir)\..\Sounds *.wav;$(SolutionDir)\..\WindowsDLLs *.dll;%(Inputs)</Inputs>
+      <Outputs>$(TargetDir)ressources;$(TargetDir)SDL.dll;$(TargetDir)*.dll;%(Outputs)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4290</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win64;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4290;4800;4996;</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <CustomBuildStep>
+      <Command>md $(TargetDir)ressources
+robocopy $(SolutionDir)\..\Graphics *.mtl $(TargetDir)ressources
+robocopy $(SolutionDir)\..\Graphics *.obj $(TargetDir)ressources
+robocopy $(SolutionDir)\..\Graphics *.tga $(TargetDir)ressources
+robocopy $(SolutionDir)\..\Sounds *.wav $(TargetDir)ressources
+robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
+      <Inputs>$(SolutionDir)\..\Graphics *.mtl;$(SolutionDir)\..\Graphics *.obj;$(SolutionDir)\..\Graphics *.tga;$(SolutionDir)\..\Sounds *.wav;$(SolutionDir)\..\WindowsDLLs *.dll;%(Inputs)</Inputs>
+      <Outputs>$(TargetDir)ressources;$(TargetDir)SDL.dll;$(TargetDir)*.dll;%(Outputs)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4290</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Client.cpp" />
+    <ClCompile Include="..\..\Controller.cpp" />
+    <ClCompile Include="..\..\Drawer.cpp" />
+    <ClCompile Include="..\..\Environment.cpp" />
+    <ClCompile Include="..\..\EnvironmentDrawer.cpp" />
+    <ClCompile Include="..\..\EnvironmentEditor.cpp" />
+    <ClCompile Include="..\..\ExecutionContext.cpp" />
+    <ClCompile Include="..\..\FileChooser.cpp" />
+    <ClCompile Include="..\..\Interpreter.cpp" />
+    <ClCompile Include="..\..\Interpreter_CompareInstructions.cpp" />
+    <ClCompile Include="..\..\Interpreter_ControlFlowInstructions.cpp" />
+    <ClCompile Include="..\..\Interpreter_DataManipulationInstructions.cpp" />
+    <ClCompile Include="..\..\Interpreter_LogicalInstructions.cpp" />
+    <ClCompile Include="..\..\Interpreter_MathInstructions.cpp" />
+    <ClCompile Include="..\..\Interpreter_SystemIOInstructions.cpp" />
+    <ClCompile Include="..\..\main.cpp" />
+    <ClCompile Include="..\..\Model.cpp" />
+    <ClCompile Include="..\..\Motor.cpp" />
+    <ClCompile Include="..\..\NetworkConstants.cpp" />
+    <ClCompile Include="..\..\NetworkInterface.cpp" />
+    <ClCompile Include="..\..\NetworkPacket.cpp" />
+    <ClCompile Include="..\..\Robot.cpp" />
+    <ClCompile Include="..\..\RobotDrawer.cpp" />
+    <ClCompile Include="..\..\RobotSpeaker.cpp" />
+    <ClCompile Include="..\..\RobotTouchHandler.cpp" />
+    <ClCompile Include="..\..\RXEFile.cpp" />
+    <ClCompile Include="..\..\SensorConfigurationScreen.cpp" />
+    <ClCompile Include="..\..\Server.cpp" />
+    <ClCompile Include="..\..\ServerBrowser.cpp" />
+    <ClCompile Include="..\..\ShowMessageBoxAndExit.cpp" />
+    <ClCompile Include="..\..\Simulation.cpp" />
+    <ClCompile Include="..\..\Single.cpp" />
+    <ClCompile Include="..\..\SoundBuffer.cpp" />
+    <ClCompile Include="..\..\SoundController.cpp" />
+    <ClCompile Include="..\..\System.cpp" />
+    <ClCompile Include="..\..\Texture.cpp" />
+    <ClCompile Include="..\..\Time.c" />
+    <ClCompile Include="..\..\TouchesRecognizer.cpp" />
+    <ClCompile Include="..\..\UIButton.cpp" />
+    <ClCompile Include="..\..\UIIcon.cpp" />
+    <ClCompile Include="..\..\UIKnob.cpp" />
+    <ClCompile Include="..\..\UIRadioGroup.cpp" />
+    <ClCompile Include="..\..\UIView.cpp" />
+    <ClCompile Include="..\..\UserDefaults.cpp" />
+    <ClCompile Include="..\..\UserInterface.cpp" />
+    <ClCompile Include="..\..\Vec4.cpp" />
+    <ClCompile Include="..\..\VMMemory.cpp" />
+    <ClCompile Include="..\..\Windows\WindowsFileChooser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\AppDelegate.h" />
+    <ClInclude Include="..\..\ByteOrder.h" />
+    <ClInclude Include="..\..\Client.h" />
+    <ClInclude Include="..\..\Controller.h" />
+    <ClInclude Include="..\..\Drawer.h" />
+    <ClInclude Include="..\..\EAGLView.h" />
+    <ClInclude Include="..\..\Environment.h" />
+    <ClInclude Include="..\..\EnvironmentDrawer.h" />
+    <ClInclude Include="..\..\EnvironmentEditor.h" />
+    <ClInclude Include="..\..\ExecutionContext.h" />
+    <ClInclude Include="..\..\FileChooser.h" />
+    <ClInclude Include="..\..\Interpreter.h" />
+    <ClInclude Include="..\..\Model.h" />
+    <ClInclude Include="..\..\Motor.h" />
+    <ClInclude Include="..\..\NetworkConstants.h" />
+    <ClInclude Include="..\..\NetworkInterface.h" />
+    <ClInclude Include="..\..\NetworkPacket.h" />
+    <ClInclude Include="..\..\OpenGL.h" />
+    <ClInclude Include="..\..\Robot.h" />
+    <ClInclude Include="..\..\RobotDrawer.h" />
+    <ClInclude Include="..\..\RobotNetworkInterface.h" />
+    <ClInclude Include="..\..\RobotSpeaker.h" />
+    <ClInclude Include="..\..\RobotTouchHandler.h" />
+    <ClInclude Include="..\..\RXEFile.h" />
+    <ClInclude Include="..\..\SensorConfigurationScreen.h" />
+    <ClInclude Include="..\..\Server.h" />
+    <ClInclude Include="..\..\ServerBrowser.h" />
+    <ClInclude Include="..\..\ShowMessageBoxAndExit.h" />
+    <ClInclude Include="..\..\simd_cpp_operators.h" />
+    <ClInclude Include="..\..\simd_functions.h" />
+    <ClInclude Include="..\..\simd_matrix.h" />
+    <ClInclude Include="..\..\simd_project.h" />
+    <ClInclude Include="..\..\simd_quaternion.h" />
+    <ClInclude Include="..\..\simd_types.h" />
+    <ClInclude Include="..\..\Simulation.h" />
+    <ClInclude Include="..\..\Single.h" />
+    <ClInclude Include="..\..\SoundBuffer.h" />
+    <ClInclude Include="..\..\SoundController.h" />
+    <ClInclude Include="..\..\System.h" />
+    <ClInclude Include="..\..\Texture.h" />
+    <ClInclude Include="..\..\Time.h" />
+    <ClInclude Include="..\..\TouchesRecognizer.h" />
+    <ClInclude Include="..\..\UIButton.h" />
+    <ClInclude Include="..\..\UIIcon.h" />
+    <ClInclude Include="..\..\UIKnob.h" />
+    <ClInclude Include="..\..\UIRadioGroup.h" />
+    <ClInclude Include="..\..\UIView.h" />
+    <ClInclude Include="..\..\UserDefaults.h" />
+    <ClInclude Include="..\..\UserInterface.h" />
+    <ClInclude Include="..\..\Vec4.h" />
+    <ClInclude Include="..\..\VMMemory.h" />
+    <ClInclude Include="..\..\Windows\WindowsFileChooser.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="legosimulator.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Graphics\roboticon.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

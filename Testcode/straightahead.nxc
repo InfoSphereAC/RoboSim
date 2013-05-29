@@ -1,0 +1,8 @@
+task main()
+{
+	while(true)
+	{
+		OnFwdSync(OUT_AB, 60, 0);
+		Wait(1000);
+	}
+}

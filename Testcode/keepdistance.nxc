@@ -1,0 +1,11 @@
+int targetDistance = 10;
+
+task main()
+{
+	SetSensorLowspeed(S4);
+	while(true)
+	{
+		int relativeDistance = SensorUS(S4) - targetDistance;
+		OnFwd(OUT_BC, relativeDistance * 10);
+	}
+}

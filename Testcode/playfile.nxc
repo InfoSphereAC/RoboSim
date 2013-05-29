@@ -1,0 +1,8 @@
+task main()
+{
+	while(true)
+	{
+		PlayFile("! Startup.wav");
+		Wait(2000);
+	}
+}

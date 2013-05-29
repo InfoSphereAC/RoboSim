@@ -1,0 +1,18 @@
+int cutoff = 60;
+int speed = 30;
+
+task main()
+{
+	SetSensorType(S3, 0x0E);
+	SetSensorMode(S3, IN_MODE_PCTFULLSCALE);
+	OnFwd(OUT_BC, speed);
+	
+	while(true)
+	{
+		while (SensorScaled(S3) < cutoff) Wait(50);
+		
+		OnRev(OUT_C, speed);
+		while (SensorScaled(S3) >= cutoff) Wait(50);
+		OnFwd(OUT_C, speed);
+	}
+}

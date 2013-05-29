@@ -1,0 +1,18 @@
+task main()
+{
+	while(true)
+	{
+		OnFwd(OUT_A, 30);
+		OnFwd(OUT_B, 30);
+		Wait(500);
+		OnFwd(OUT_A, 30);
+		OnRev(OUT_B, 30);
+		Wait(200);
+		OnFwd(OUT_A, 30);
+		OnFwd(OUT_B, 30);
+		Wait(500);
+		OnFwd(OUT_A, 30);
+		OnRev(OUT_B, 30);
+		Wait(200);
+	}
+}

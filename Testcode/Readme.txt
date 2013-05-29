@@ -1,0 +1,1 @@
+This folder contains a number of Lego Mindstorms RXE files that were created to test the simulator.

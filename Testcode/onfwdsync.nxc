@@ -1,0 +1,26 @@
+task main()
+{
+	while(true)
+	{
+		OnFwdSync(OUT_AB, 30, 0);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, -50);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, 0);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, +50);
+		Wait(500);
+		
+		OnRevSync(OUT_AB, 90, 0);
+		Wait(500);
+		
+		OnFwdSync(OUT_AB, 30, 0);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, -100);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, 0);
+		Wait(500);
+		OnFwdSync(OUT_AB, 30, +100);
+		Wait(500);
+	}
+}
