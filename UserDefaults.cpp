@@ -12,6 +12,8 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include <fstream>
+
 #elif defined(__APPLE_CC__)
 #include <CoreFoundation/CoreFoundation.h>
 #else
@@ -25,6 +27,14 @@ const char *registryPath = "Software\\RoboSim";
 void setDataForUserInterfaceKey(const char *keyName, unsigned dataSize, void *data)
 {
 #ifdef _WIN32
+	// Save in File
+	std::ofstream f("current_map.bin", std::ios::binary);
+	if (f.is_open()) {
+		f.write( (char *)data, dataSize);
+	}
+	f.close();
+
+	// Save in registry
 	HKEY hKey;
 	
 	// Open the key handle
@@ -57,30 +67,58 @@ void setDataForUserInterfaceKey(const char *keyName, unsigned dataSize, void *da
 void *getDataAndSizeForUserInterfaceKey(const char *keyName, unsigned &outDataSize)
 {
 #ifdef _WIN32
-	HKEY hKey;
-	
-	// Open key
-	if(RegCreateKeyExA(HKEY_CURRENT_USER, registryPath, 0, NULL, 0, KEY_READ, NULL, &hKey, NULL) != ERROR_SUCCESS) throw std::runtime_error("Could not open key");
-	
-	// Find size
-	DWORD dwSize = 0;
-	DWORD dwType = REG_BINARY;
-	if (RegQueryValueExA(hKey, LPCSTR(keyName), 0, &dwType, (LPBYTE) NULL, &dwSize) != ERROR_SUCCESS)
-	{
-		RegCloseKey(hKey);
-		return NULL;
+	// Load from file
+			
+	std::ifstream file;
+	file.open("ressources\\current_map.bin", std::ios::binary | std::ios::ate);
+	if (file.is_open()){
+
+		// Find size
+		std::streampos file_size;
+		file_size = file.tellg();
+
+		//Create buffer
+		outDataSize = file_size;
+		char *output_file = new char[outDataSize];
+
+		//Get actual value
+		file.seekg(0, std::ios::beg);
+		file.read(output_file, outDataSize);
+
+		//close file
+		file.close();
+		return output_file;
 	}
+	else return NULL;
+
+			
+	//// Load from registry
+	//HKEY hKey;
+	//
+	//// Open key
+	//if(RegCreateKeyExA(HKEY_CURRENT_USER, registryPath, 0, NULL, 0, KEY_READ, NULL, &hKey, NULL) != ERROR_SUCCESS) throw std::runtime_error("Could not open key");
+	//
+	//// Find size
+	//DWORD dwSize = 0;
+	//DWORD dwType = REG_BINARY;
+	//if (RegQueryValueExA(hKey, LPCSTR(keyName), 0, &dwType, (LPBYTE) NULL, &dwSize) != ERROR_SUCCESS)
+	//{
+	//	RegCloseKey(hKey);
+	//	return NULL;
+	//}
+	//
+	//// Create buffer
+	//outDataSize = dwSize;
+	//char *output = new char [outDataSize];
+	//
+	//// Get actual value
+	//if (RegQueryValueExA(hKey, LPCSTR(keyName), 0, &dwType, (LPBYTE) output, &dwSize) != ERROR_SUCCESS) throw std::invalid_argument("Could not get value");
+	//
+	//// Close key
+	//RegCloseKey(hKey);
 	
-	// Create buffer
-	outDataSize = dwSize;
-	char *output = new char [outDataSize];
 	
-	// Get actual value
-	if (RegQueryValueExA(hKey, LPCSTR(keyName), 0, &dwType, (LPBYTE) output, &dwSize) != ERROR_SUCCESS) throw std::invalid_argument("Could not get value");
-	
-	// Close key
-	RegCloseKey(hKey);
-	return output;
+
 	
 #elif defined(__APPLE_CC__)
 	CFStringRef keyString = CFStringCreateWithCString(kCFAllocatorDefault, keyName, kCFStringEncodingASCII);

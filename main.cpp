@@ -18,14 +18,15 @@ namespace
 	
 	bool commandKeyIsDown = false;
 	
-	const unsigned defaultWindowWidth = 800;
+	// change sreen size
+	const unsigned defaultWindowWidth =  800;
 	const unsigned defaultWindowHeight = 600;
 	
 	unsigned actualWindowWidth = defaultWindowWidth;
 	unsigned actualWindowHeight = defaultWindowHeight;
 }
 
-void initVideo()
+void initVideo(const char* filename)
 {
 #ifdef _WIN32
 	HINSTANCE handle = ::GetModuleHandle(NULL);
@@ -38,7 +39,21 @@ void initVideo()
 	SetClassLong(hwnd, GCL_HICON, (LONG) icon);
 
 #endif
-	SDL_WM_SetCaption("RoboSim", NULL);
+	// Set Window half of current screen width 
+	const SDL_VideoInfo* info = SDL_GetVideoInfo();
+	actualWindowWidth = info->current_w / 2;
+	actualWindowHeight = info->current_h / 4 * 3;
+
+	// Set window position
+	SDL_putenv("SDL_VIDEO_WINDOW_POS=center");
+
+	if (filename){
+		std::string c = std::string("Simulator - ") + std::string(filename);
+		const char * window_name = c.c_str();
+		SDL_WM_SetCaption(window_name, NULL);
+	}
+	else SDL_WM_SetCaption("Simulator", NULL);
+	
 	if (SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16) != 0)
 	{
 		ShowErrorAndExit(L"Konnte Grafik nicht richtig einstellen (kein Tiefenbuffer verf\u00FCgbar). Fehlerbeschreibung: \"%s\"", L"Could not configure graphics (no depth buffer available). Error description: \"%s\"", SDL_GetError());
@@ -178,7 +193,7 @@ extern "C" int main (int argc, char * argv[])
 	{
 		ShowErrorAndExit(L"Konnte SDL nicht starten. Fehlerbeschreibung: \"%s\"", L"Could not start SDL, error description: \"%s\"", SDL_GetError());
 	}
-	
+
 	// Parse arguments
 
 	const char *filename = NULL;
@@ -287,8 +302,9 @@ extern "C" int main (int argc, char * argv[])
 
 	SetCurrentDirectory(exeFileName);
 #endif
-	
-	initVideo();
+
+	initVideo(filename);
+
 	initAudio();
 	runLoop();
 	

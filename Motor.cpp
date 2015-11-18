@@ -10,6 +10,7 @@
 #include "Motor.h"
 
 #include <cmath>
+#include <algorithm>
 
 namespace
 {

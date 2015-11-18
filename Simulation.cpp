@@ -12,6 +12,7 @@
 #include <cmath>
 #include <iostream>
 #include <stdlib.h>
+#include <algorithm>
 
 #include "Environment.h"
 #include "Robot.h"

@@ -3,6 +3,7 @@
  *  mindstormssimulation
  *
  *  Created by Torsten Kammer on 31.04.10
+ *	Edited by Thiemo Leonhardt in 2015
  *  Copyright 2010 RWTH Aachen University All rights reserved.
  *
  */
@@ -45,7 +46,8 @@ namespace
 {
 	const float cameraSpeed = 5.0f;
 	const float cameraAngularSpeed = float(M_PI);
-	const float cameraPitch = -0.75f;
+	//const float cameraPitch = -0.75f;
+	const float cameraPitch = -0.6f;
 	const float robotCPUTimeFraction = 0.04f;
 	const float robotTurnSpeed = float(M_PI) * 0.5f;
 	
@@ -115,10 +117,11 @@ Controller::Controller(
 		filename = NULL;
 		executionContext = NULL;
 	}
-	environment = new Environment(20, 20, 1.0f, 0.75f);
+	// environment properties
+	environment = new Environment(25, 25, 1.0f, 0.75f);
 	simulation = new Simulation(environment);
 	editor = new EnvironmentEditor(environment);
-	editor->setMode(EnvironmentEditor::Height);
+	editor->setMode(EnvironmentEditor::None);
 	drawer = 0;
 	soundController = 0;
 	userinterface = 0;
@@ -127,6 +130,7 @@ Controller::Controller(
 	char *data = (char *) getDataAndSizeForUserInterfaceKey("environment", dataSize);
 	if (data)
 		editor->loadFromSerialization((const NetworkPacket *) data);
+
 	
 	if (mode == SingleMode)
 	{
@@ -224,7 +228,10 @@ void Controller::initVideo()
 #else
 	drawer = new Drawer(editor);
 #endif
-	drawer->setCameraPosition(15.0f, 2.5f, 15.0f, cameraPitch, 0.0f, 2.5f);
+	// camera position
+	//drawer->setCameraPosition(15.0f, 2.5f, 15.0f, cameraPitch, 0.0f, 2.5f);
+	//drawer->setCameraPosition(5.0f, 3.5f, 15.0f, cameraPitch, 0.0f, 2.5f);
+	drawer->setCameraPosition(-0.2f, 3.0f, -0.2f, cameraPitch, 4.0f, 2.5f);
 	userinterface = new UserInterface(this);
 	
 	if (networkInterface)
@@ -475,16 +482,16 @@ void Controller::keyDown(int character, bool isPrintable)
 				break;
 				
 			case '0':
-				editor->setMode(EnvironmentEditor::None);
+				if (!this->getEnvironmentEditor()->getChallenge()) editor->setMode(EnvironmentEditor::None);
 				break;
 			case '1':
-				editor->setMode(EnvironmentEditor::Height);
-				break;
+				if (!this->getEnvironmentEditor()->getChallenge()) editor->setMode(EnvironmentEditor::Height);
+					break;
 			case '2':
-				editor->setMode(EnvironmentEditor::Darken);
+				if (!this->getEnvironmentEditor()->getChallenge()) editor->setMode(EnvironmentEditor::Darken);
 				break;
 			case '3':
-				editor->setMode(EnvironmentEditor::Lighten);
+				if (!this->getEnvironmentEditor()->getChallenge()) editor->setMode(EnvironmentEditor::Lighten);
 				break;
 		}
 	}

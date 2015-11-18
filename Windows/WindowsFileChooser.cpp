@@ -15,7 +15,7 @@ void WindowsFileChooser::run(FileChooserDelegate *delegate)
 	if (!delegate) return;
 	
 	OPENFILENAMEA ofn;
-	CHAR szFile[2600];
+	CHAR szFile[260];
 	
 	ZeroMemory(&ofn, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
@@ -24,14 +24,14 @@ void WindowsFileChooser::run(FileChooserDelegate *delegate)
 	ofn.lpstrFile[0] = '\0';
 	ofn.nMaxFile = sizeof(szFile);
 	ofn.lpstrFilter = "All\0*.*\0Mindstorms Code\0*.RXE\0";
-	ofn.nFilterINdex = 1;
+	ofn.nFilterIndex = 1;
 	ofn.lpstrFileTitle = NULL;
 	ofn.nMaxFileTitle = 0;
 	ofn.lpstrInitialDir = NULL;
 	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 	
-	if (GetOpenFilenameA(&ofn) == TRUE)
+	if (GetOpenFileNameA(&ofn) == TRUE)
 	{
-		delegate->FileChooserDelegate(ofn.szFile);
+		delegate->fileChooserFoundFile(szFile);
 	}
 }

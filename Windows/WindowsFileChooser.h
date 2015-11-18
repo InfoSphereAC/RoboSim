@@ -11,4 +11,4 @@
 class WindowsFileChooser : public FileChooser
 {
 	virtual void run(FileChooserDelegate *delegate);
-}
+};
