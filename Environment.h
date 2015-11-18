@@ -3,6 +3,7 @@
  *  mindstormssimulation
  *
  *  Created by Torsten Kammer on 17.04.10
+ *	Edited by Thiemo Leonhardt in 2015
  *  Copyright 2010 RWTH Aachen University All rights reserved.
  *
  */
@@ -28,6 +29,7 @@ private:
 	unsigned sizeZ;
 	float cellSize;
 	float cellHeight;
+	bool challenge=false;
 	
 	void throwIfOutOfRange(unsigned x, unsigned z) const throw(std::range_error);
 	void clampToRange(unsigned &x, unsigned &z) const throw();
@@ -45,6 +47,8 @@ public:
 	void setCellIsWall(unsigned x, unsigned z, bool isWall) throw(std::range_error);
 	float getCellShade(unsigned x, unsigned z) const throw();
 	void setCellShade(unsigned x, unsigned z, float shade) throw(std::range_error);
+	bool getChallenge(){ return challenge; }
+	void setChallenge(bool mode) throw(std::range_error);
 	
 	/*!
 	 * @abstract Calculates the first cell hit when following a line.

@@ -3,6 +3,7 @@
  *  mindstormssimulation
  *
  *  Created by Torsten Kammer on 14.05.10.
+ *	Edited by Thiemo Leonhardt in 2015
  *  Copyright 2010 __MyCompanyName__. All rights reserved.
  *
  */
@@ -108,23 +109,24 @@ UserInterface::UserInterface(Controller *aController) :
 	subviews[FileOpenButton]->setIsVisible(false);
 	
 	// Mode buttons
-	subviews[ModeButtons] = new UIRadioGroup(-buttonOffsetX-buttonWidth-nextButtonStride*2.0f, -buttonOffsetY - buttonHeight, nextButtonStride*2.0f + buttonWidth, buttonHeight, this);
+	subviews[ModeButtons] = new UIRadioGroup(-buttonOffsetX - buttonWidth - nextButtonStride*2.0f, -buttonOffsetY - buttonHeight, nextButtonStride*2.0f + buttonWidth, buttonHeight, this);
 	// Height
-	((UIRadioGroup *) subviews[ModeButtons])->addCircularButton(nextButtonStride*0.f, 0.0f, buttonWidth, buttonHeight);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::Normal, texButtonStartX+texButtonWidth*2.f, texButtonStartY, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::Secondary, texButtonStartX+texButtonWidth*2.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::NormalActive, texButtonStartX+texButtonWidth*2.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);	
+	((UIRadioGroup *)subviews[ModeButtons])->addCircularButton(nextButtonStride*0.f, 0.0f, buttonWidth, buttonHeight);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::Normal, texButtonStartX + texButtonWidth*2.f, texButtonStartY, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::Secondary, texButtonStartX + texButtonWidth*2.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(0, UIButton::NormalActive, texButtonStartX + texButtonWidth*2.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
 	// Darken
-	((UIRadioGroup *) subviews[ModeButtons])->addCircularButton(nextButtonStride*1.f, 0.0f, buttonWidth, buttonHeight);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::Normal, texButtonStartX+texButtonWidth*4.f, texButtonStartY, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::Secondary, texButtonStartX+texButtonWidth*4.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::NormalActive, texButtonStartX+texButtonWidth*4.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->addCircularButton(nextButtonStride*1.f, 0.0f, buttonWidth, buttonHeight);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::Normal, texButtonStartX + texButtonWidth*4.f, texButtonStartY, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::Secondary, texButtonStartX + texButtonWidth*4.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(1, UIButton::NormalActive, texButtonStartX + texButtonWidth*4.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
 	// Lighten
-	((UIRadioGroup *) subviews[ModeButtons])->addCircularButton(nextButtonStride*2.f, 0.0f, buttonWidth, buttonHeight);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::Normal, texButtonStartX+texButtonWidth*3.f, texButtonStartY, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::Secondary, texButtonStartX+texButtonWidth*3.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
-	((UIRadioGroup *) subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::NormalActive, texButtonStartX+texButtonWidth*3.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->addCircularButton(nextButtonStride*2.f, 0.0f, buttonWidth, buttonHeight);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::Normal, texButtonStartX + texButtonWidth*3.f, texButtonStartY, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::Secondary, texButtonStartX + texButtonWidth*3.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
+	((UIRadioGroup *)subviews[ModeButtons])->setTextureRectForButtonState(2, UIButton::NormalActive, texButtonStartX + texButtonWidth*3.f, texButtonStartY - texButtonHeight, texButtonWidth, texButtonWidth);
 	subviews[ModeButtons]->setIsVisible(false);
+	
 	
 	// Flag icon
 	subviews[FlagIcon] = new UIIcon(-buttonOffsetX-flagIconWidth, buttonOffsetY, flagIconWidth, flagIconHeight, flagIconTexX, flagIconTexY, flagIconWidth, flagIconHeight);
@@ -143,7 +145,7 @@ UserInterface::UserInterface(Controller *aController) :
 	// Sensor configuration
 	subviews[SensorConfiguration] = NULL;
 	
-	controller->getEnvironmentEditor()->setMode(EnvironmentEditor::Height);
+	controller->getEnvironmentEditor()->setMode(EnvironmentEditor::None); // Default is None
 	((UIRadioGroup *) subviews[ModeButtons])->setSelectedIndex(0);
 }
 
@@ -164,7 +166,7 @@ void UserInterface::resize(float width, float height)
 	subviews[PlayPauseButton]->setOrigin(buttonOffsetX, height-(buttonOffsetY+buttonHeight));
 	subviews[ReloadButton]->setOrigin(buttonOffsetX+nextButtonStride, height-(buttonOffsetY+buttonHeight));
 	subviews[FileOpenButton]->setOrigin(buttonOffsetX+2.f*nextButtonStride, height-(buttonOffsetY+buttonHeight));
-	subviews[ModeButtons]->setOrigin(width-(buttonOffsetX+3.f*nextButtonStride), height-(buttonOffsetY+buttonHeight));
+	if (!controller->getEnvironmentEditor()->getChallenge()) subviews[ModeButtons]->setOrigin(width - (buttonOffsetX + 3.f*nextButtonStride), height - (buttonOffsetY + buttonHeight));
 	subviews[FlagIcon]->setOrigin(width-(buttonOffsetX+nextButtonStride), buttonOffsetY);
 	subviews[TurnRobotIcon]->setOrigin((width-turnRobotIconWidth)/2.f, height-(buttonOffsetY+(buttonHeight+turnRobotIconHeight)/2.f));
 	
@@ -198,7 +200,7 @@ void UserInterface::draw(float width, float height)
 			subviews[PlayPauseButton]->setIsVisible(true);
 			subviews[ReloadButton]->setIsVisible(true);
 			subviews[FileOpenButton]->setIsVisible(true);
-			subviews[ModeButtons]->setIsVisible(true);
+			if (!controller->getEnvironmentEditor()->getChallenge()) subviews[ModeButtons]->setIsVisible(true); // No edit in challenge mode
 			subviews[FlagIcon]->setIsVisible(true);
 			subviews[ShowSensorSelectionButton]->setIsVisible(true);
 			
@@ -265,6 +267,6 @@ void UserInterface::selectionChanged(UIRadioGroup *group, unsigned index)
 	}
 	else if (group == subviews[ModeButtons])
 	{
-		controller->getEnvironmentEditor()->setMode(EnvironmentEditor::EditingMode(index+1));
+		if (!controller->getEnvironmentEditor()->getChallenge()) controller->getEnvironmentEditor()->setMode(EnvironmentEditor::EditingMode(index + 1)); 
 	}
 }

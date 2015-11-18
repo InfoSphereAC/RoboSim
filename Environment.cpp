@@ -88,6 +88,10 @@ void Environment::getSize(unsigned &x, unsigned &z) const throw()
 	z = sizeZ;
 }
 
+void Environment::setChallenge(bool mode) throw(std::range_error){
+	challenge = mode;
+}
+
 bool Environment::getFirstCellOnRay(const ray4 &ray, int &x, int &z, float &length) const throw()
 {
 	// 0th step: Transform ray into coord system where height of wall is 1

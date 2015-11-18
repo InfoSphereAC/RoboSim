@@ -33,7 +33,8 @@ void EnvironmentEditor::loadFromSerialization(const NetworkPacket *packet)
 	if (packet->gridOverview.packetType != NetworkPacket::GridOverview) throw std::invalid_argument("Not a GridOverview packet.");
 	
 	setDimensions(packet->gridOverview.sizeX, packet->gridOverview.sizeZ, packet->gridOverview.cellSize, packet->gridOverview.cellHeight);
-	
+	setChallenge(packet->gridOverview.challengeMode);
+
 	for (unsigned x = 0, i = 0; x < packet->gridOverview.sizeX; x++)
 	{
 		for (unsigned z = 0; z < packet->gridOverview.sizeZ; z++, i++)
@@ -55,6 +56,8 @@ NetworkPacket *EnvironmentEditor::writeToSerialization() const
 	environmentPacket->gridOverview.cellHeight = getCellHeight();
 	environmentPacket->gridOverview.sizeX = sizeX;
 	environmentPacket->gridOverview.sizeZ = sizeZ;
+	environmentPacket->gridOverview.challengeMode = getChallenge();
+	
 	for (unsigned x = 0, i = 0; x < sizeX; x++)
 		for (unsigned z = 0; z < sizeZ; z++, i++)
 			environmentPacket->gridOverview.cells[i] = (getCellIsWall(x, z) ? 0x80 : 0x00) + uint8_t(getCellShade(x, z) * 127.0f);
@@ -95,6 +98,17 @@ float EnvironmentEditor::getCellShade(unsigned x, unsigned z) const throw()
 {
 	return environment->getCellShade(x, z);
 }
+
+bool EnvironmentEditor::getChallenge() const throw()
+{
+	return environment->getChallenge();
+}
+
+void EnvironmentEditor::setChallenge(bool mode)
+{
+	environment->setChallenge(mode);
+}
+
 
 void EnvironmentEditor::setCellIsWall(unsigned x, unsigned z, bool isit) throw(std::range_error)
 {
