@@ -1,12 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "legosimulator", "legosimulator\legosimulator.vcxproj", "{6E576D67-339D-46BA-8627-D63C1C417A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		editor|Win32 = editor|Win32
+		editor|x64 = editor|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 	EndGlobalSection
@@ -15,6 +19,10 @@ Global
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Debug|Win32.Build.0 = Debug|Win32
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Debug|x64.ActiveCfg = Debug|x64
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Debug|x64.Build.0 = Debug|x64
+		{6E576D67-339D-46BA-8627-D63C1C417A3F}.editor|Win32.ActiveCfg = editor|Win32
+		{6E576D67-339D-46BA-8627-D63C1C417A3F}.editor|Win32.Build.0 = editor|Win32
+		{6E576D67-339D-46BA-8627-D63C1C417A3F}.editor|x64.ActiveCfg = editor|x64
+		{6E576D67-339D-46BA-8627-D63C1C417A3F}.editor|x64.Build.0 = editor|x64
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Release|Win32.ActiveCfg = Release|Win32
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Release|Win32.Build.0 = Release|Win32
 		{6E576D67-339D-46BA-8627-D63C1C417A3F}.Release|x64.ActiveCfg = Release|x64

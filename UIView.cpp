@@ -4,7 +4,8 @@
  *
  *  Created by Torsten Kammer on 22.06.10.
  *  Copyright 2010 __MyCompanyName__. All rights reserved.
- *
+ * 
+ *  
  */
 
 #include "UIView.h"

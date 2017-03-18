@@ -3,6 +3,7 @@
  *  mindstormssimulation
  *
  *  Created by Torsten Kammer on 31.04.10
+ *	Edited by Thiemo Leonhardt in 2015
  *  Copyright 2010 RWTH Aachen University All rights reserved.
  *
  */

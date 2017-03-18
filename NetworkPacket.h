@@ -232,6 +232,7 @@ struct GridOverviewPacket
 	float cellHeight;
 	uint8_t sizeX;
 	uint8_t sizeZ;
+	bool challengeMode;
 	
 	uint8_t cells[];
 	// cells[i] & 0x80 ==> is wall

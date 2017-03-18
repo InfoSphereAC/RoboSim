@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+
+legosimulator/Debug/
+legosimulator/Release/
+legosimulator/legosimulator/Debug/
+legosimulator/legosimulator/Release/
+

@@ -36,7 +36,7 @@ namespace
 	const float boundingBox3DHeight = 1.1f;
 	
 	const float ultrasoundRange = 1000.0f;
-	const float ultrasoundDistanceScale = 5.f;
+	const float ultrasoundDistanceScale = 5.0f;
 	const float noiseLevelScale = 10.0f;
 	const float touchRange = 0.25f;
 	const float lightRange = 100.0f;
@@ -50,7 +50,7 @@ namespace
 Robot::Robot(Simulation *aSimulation)
 : simulation(aSimulation)
 {
-	yaw = 1;
+	yaw = 0;
 	
 	position.w = float4(10, 0, 10);
 	leftMotor = 0;
@@ -75,9 +75,9 @@ Robot::Robot(Simulation *aSimulation)
 	speaker = NULL;
 	lifted = false;
 	
-	flagColor[0] = 1.0f;
+	flagColor[0] = 0.0f;
 	flagColor[1] = 0.0f;
-	flagColor[2] = 0.0f;
+	flagColor[2] = 1.0f;
 	
 	liftedTurnSpeed = 0.0f;
 }

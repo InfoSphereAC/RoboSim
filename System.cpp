@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <algorithm>
 
 #include "NetworkInterface.h"
 #include "Time.h"

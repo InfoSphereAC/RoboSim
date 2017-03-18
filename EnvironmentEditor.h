@@ -3,6 +3,7 @@
  *  mindstormssimulation
  *
  *  Created by Torsten Kammer on 29.04.10
+ *	Edited by Thiemo Leonhardt in 2015
  *  Copyright 2010 RWTH Aachen University All rights reserved.
  *
  */
@@ -52,6 +53,8 @@ public:
 	float getCellShade(unsigned x, unsigned z) const throw();
 	void setCellIsWall(unsigned x, unsigned z, bool isit) throw(std::range_error);
 	void setCellShade(unsigned x, unsigned z, float shade) throw(std::range_error);
+	bool getChallenge() const throw();
+	void setChallenge(bool mode);
 	
 	EditingMode getMode() const throw() { return mode; }
 	void setMode(EditingMode newMode) throw() { mode = newMode; }
